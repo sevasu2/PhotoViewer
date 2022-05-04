@@ -5,6 +5,20 @@ class PhotoViewer {
     this.currrentIndex = 0;
   }
   init() {
+    const nextButtonElm = this.rootElm.querySelector(".nextButton");
+    nextButtonElm.addEventListener("click", () => {
+      this.next();
+    });
+
+    const prevButtonElm = this.rootElm.querySelector(".prevButton");
+    prevButtonElm.addEventListener("click", () => {
+      this.prev();
+    });
+
+    this.updatePhoto();
+  }
+
+  updatePhoto() {
     const frameElm = this.rootElm.querySelector(".frame");
     const image = this.images[this.currentIndex];
 
@@ -14,11 +28,21 @@ class PhotoViewer {
     </div>
     `;
   }
+
+  next() {
+    this.currentIndex++;
+    this.updatePhoto();
+  }
+
+  prev() {
+    this.currentIndex--;
+    this.updatePhoto();
+  }
 }
 
 const images = [
-  "https://fakeing.pl/250x150/81DAF5",
-  "https://fakeing.pl/250x150/81DAF5",
-  "https://fakeing.pl/250x150/81DAF5",
+  "https://fakeimg.pl/250x150/81DAF5",
+  "https://fakeimg.pl/250x150/81DAF5",
+  "https://fakeimg.pl/250x150/81DAF5",
 ];
 new PhotoViewer(document.getElementById("photoViewer"), images).init();
